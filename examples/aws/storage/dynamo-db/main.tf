@@ -3,7 +3,7 @@ terraform {
 }
 
 module "example_table" {
-  source = "../../../modules/storage/dynamo-db"
+  source = "../../../../modules/aws/storage/dynamo-db"
 
   name      = "ExampleTable"
   hash_key  = "partitionKey"
