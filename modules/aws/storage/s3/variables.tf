@@ -9,6 +9,24 @@ variable "versioning_enabled" {
   default     = false
 }
 
+variable "encryption_enabled" {
+  description = "Whether to configure default server-side encryption for the bucket."
+  type        = bool
+  default     = true
+}
+
+variable "sse_algorithm" {
+  description = "Server-side encryption algorithm to use by default."
+  type        = string
+  default     = "AES256"
+}
+
+variable "bucket_key_enabled" {
+  description = "Whether to enable S3 Bucket Keys."
+  type        = bool
+  default     = false
+}
+
 variable "block_public_access" {
   description = "Whether to block all public access to the bucket."
   type        = bool
@@ -46,6 +64,24 @@ variable "logging_target_prefix" {
   description = "Prefix for access log objects."
   type        = string
   default     = null
+}
+
+variable "bucket_policy_json" {
+  description = "JSON bucket policy document to attach to the bucket."
+  type        = string
+  default     = null
+}
+
+variable "website_enabled" {
+  description = "Whether to enable static website hosting for the bucket."
+  type        = bool
+  default     = false
+}
+
+variable "website_index_document" {
+  description = "Index document suffix for static website hosting."
+  type        = string
+  default     = "index.html"
 }
 
 variable "tags" {

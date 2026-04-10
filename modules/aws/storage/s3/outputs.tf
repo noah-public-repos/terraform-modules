@@ -22,3 +22,8 @@ output "bucket_regional_domain_name" {
   description = "Regional domain name of the S3 bucket."
   value       = aws_s3_bucket.this.bucket_regional_domain_name
 }
+
+output "website_endpoint" {
+  description = "Website endpoint for the S3 bucket, if website hosting is enabled."
+  value       = try(aws_s3_bucket_website_configuration.this[0].website_endpoint, null)
+}

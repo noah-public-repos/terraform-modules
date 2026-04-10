@@ -5,9 +5,27 @@ terraform {
 module "example_bucket" {
   source = "../../../../modules/aws/storage/s3"
 
-  name               = "my-example-bucket"
-  versioning_enabled = true
-  force_destroy      = true
+  name                   = "my-example-bucket"
+  versioning_enabled     = true
+  encryption_enabled     = true
+  sse_algorithm          = "AES256"
+  bucket_key_enabled     = false
+  block_public_access    = false
+  website_enabled        = true
+  website_index_document = "index.html"
+  force_destroy          = true
+  bucket_policy_json = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid       = "PublicReadObjects"
+        Effect    = "Allow"
+        Principal = "*"
+        Action    = "s3:GetObject"
+        Resource  = "arn:aws:s3:::my-example-bucket/*"
+      }
+    ]
+  })
 
   lifecycle_rules = [
     {
