@@ -1,6 +1,9 @@
 # Local .terraform directories
 .terraform/
 
+# Provider lock files are not committed in this module library
+.terraform.lock.hcl
+
 # .tfstate files
 *.tfstate
 *.tfstate.*
